@@ -18,8 +18,10 @@ var helpers = {
         var userIdentities = identities['userIdentities'];
         var userId;
         switch(userIdField) {
+            // The server returns `customerId` as part of the `userIdField` setting
+            // but the API for identity requies it to be cased as `customerid`
             case 'customerId':
-                userId = userIdentities['customerId'];
+                userId = userIdentities['customerid'];
                 break;
             case 'email':
                 userId = userIdentities['email'];
