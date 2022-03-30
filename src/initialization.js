@@ -2,6 +2,10 @@ var optimizelyWebXEvents = require('./optimizely-x-defined-events');
 var optimizelyFullStackEvents = require('./optimizely-fs-defined-events');
 var helpers = require('./helpers');
 
+var optimizelyFsSdkUrl = 'https://unpkg.com/@optimizely/optimizely-sdk@3.5.0/dist/optimizely.browser.umd.min.js',
+    dataFilePrefix = 'https://cdn.optimizely.com/datafiles/',
+    dataFileURLending = '.json/tag.js';
+
 var initialization = {
     name: 'Optimizely',
     moduleId: 54,
@@ -53,8 +57,16 @@ var initialization = {
                     });  
                 }
 
-                helpers.loadScript('https://unpkg.com/@optimizely/optimizely-sdk/dist/optimizely.browser.umd.min.js', 
-                helpers.loadScript('https://cdn.optimizely.com/datafiles/' + settings.projectId + '.json/tag.js', instantiateFSClient));
+                helpers.loadScript(optimizelyFsSdkUrl,
+                    function() {
+                        helpers.loadScript(
+                          dataFilePrefix +
+                            settings.projectId +
+                            dataFileURLending,
+                          instantiateFSClient
+                        );
+                    }
+                );
 
             } else {
                 isInitialized = true;
