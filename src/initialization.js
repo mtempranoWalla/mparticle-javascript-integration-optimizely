@@ -53,8 +53,17 @@ var initialization = {
                     });  
                 }
 
-                helpers.loadScript('https://unpkg.com/@optimizely/optimizely-sdk/dist/optimizely.browser.umd.min.js', 
-                helpers.loadScript('https://cdn.optimizely.com/datafiles/' + settings.projectId + '.json/tag.js', instantiateFSClient));
+                helpers.loadScript(
+                    'https://unpkg.com/@optimizely/optimizely-sdk@3.5.0/dist/optimizely.browser.umd.min.js',
+                    function() {
+                        helpers.loadScript(
+                            'https://cdn.optimizely.com/datafiles/' +
+                                settings.projectId +
+                                '.json/tag.js',
+                            instantiateFSClient
+                        );
+                    }
+                );
 
             } else {
                 isInitialized = true;
