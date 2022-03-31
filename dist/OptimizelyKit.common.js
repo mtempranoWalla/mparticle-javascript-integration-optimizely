@@ -340,6 +340,10 @@ IdentityHandler.prototype.onSetUserIdentity = function(
 
 var identityHandler = IdentityHandler;
 
+var optimizelyFsSdkUrl = 'https://unpkg.com/@optimizely/optimizely-sdk@3.5.0/dist/optimizely.browser.umd.min.js',
+    dataFilePrefix = 'https://cdn.optimizely.com/datafiles/',
+    dataFileURLending = '.json/tag.js';
+
 var initialization = {
     name: 'Optimizely',
     moduleId: 54,
@@ -388,8 +392,16 @@ var initialization = {
                     });  
                 };
 
-                helpers_1.loadScript('https://unpkg.com/@optimizely/optimizely-sdk/dist/optimizely.browser.umd.min.js', 
-                helpers_1.loadScript('https://cdn.optimizely.com/datafiles/' + settings.projectId + '.json/tag.js', instantiateFSClient));
+                helpers_1.loadScript(optimizelyFsSdkUrl,
+                    function() {
+                        helpers_1.loadScript(
+                          dataFilePrefix +
+                            settings.projectId +
+                            dataFileURLending,
+                          instantiateFSClient
+                        );
+                    }
+                );
 
             } else {
                 loadFullStackEvents();
@@ -555,7 +567,10 @@ var constructor = function() {
     ) {
         forwarderSettings = settings;
 
-        if (window.mParticle.isTestEnvironment) {
+        if (
+            typeof window !== 'undefined' &&
+            window.mParticle.isTestEnvironment
+        ) {
             reportingService = function() {};
         } else {
             reportingService = service;
@@ -971,14 +986,14 @@ function isObject(val) {
 
 function register(config) {
     if (!config) {
-        window.console.log(
+        console.log(
             'You must pass a config object to register the kit ' + name
         );
         return;
     }
 
     if (!isObject(config)) {
-        window.console.log(
+        console.log(
             "'config' must be an object. You passed in a " + typeof config
         );
         return;
@@ -994,17 +1009,19 @@ function register(config) {
             constructor: constructor,
         };
     }
-    window.console.log(
+    console.log(
         'Successfully registered ' + name + ' to your mParticle configuration'
     );
 }
 
-if (window && window.mParticle && window.mParticle.addForwarder) {
-    window.mParticle.addForwarder({
-        name: name,
-        constructor: constructor,
-        getId: getId,
-    });
+if (typeof window !== 'undefined') {
+    if (window && window.mParticle && window.mParticle.addForwarder) {
+        window.mParticle.addForwarder({
+            name: name,
+            constructor: constructor,
+            getId: getId,
+        });
+    }
 }
 
 var webKitWrapper = {
