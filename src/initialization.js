@@ -70,6 +70,8 @@ var initialization = {
 
             } else {
                 isInitialized = true;
+                common.userIdField = settings.userIdField;
+                common.userAttributes = userAttributes;
                 loadFullStackEvents();
             }            
         } else {
