@@ -1,6 +1,6 @@
 {
-    "name": "@mparticle/web-optimizely-kit-custom",
-    "version": "2.1.6",
+    "name": "@mtempranowalla/web-optimizely-kit",
+    "version": "2.1.7",
     "author": "mParticle Developers <developers@mparticle.com> (https://www.mparticle.com)",
     "description": "mParticle integration sdk for Optimizely",
     "main": "dist/OptimizelyKit.common.js",
@@ -8,7 +8,7 @@
     "files": [
         "dist/OptimizelyKit.common.js"
     ],
-    "repository": "https://github.com/mparticle-integrations/mparticle-javascript-integration-optimizely",
+    "repository": "git://github.com/mtempranoWalla/mparticle-javascript-integration-optimizely.git",
     "scripts": {
         "test": "npm run testKarma",
         "testKarma": "node test/boilerplate/test-karma.js",
@@ -16,7 +16,7 @@
         "watch": "ENVIRONMENT=production rollup --config rollup.config.js -w"
     },
     "publishConfig": {
-        "@mtempranoWalla:registry": "https://npm.pkg.github.com"
+        "@mtempranowalla:registry": "https://npm.pkg.github.com"
     },
     "devDependencies": {
         "@mparticle/web-kit-wrapper": "^1.0.5",
