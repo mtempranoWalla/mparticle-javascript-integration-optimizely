@@ -403,6 +403,8 @@ var OptimizelyKit = (function (exports) {
                     );
 
                 } else {
+                    common.userIdField = settings.userIdField;
+                    common.userAttributes = userAttributes;
                     loadFullStackEvents();
                 }            
             } else {
