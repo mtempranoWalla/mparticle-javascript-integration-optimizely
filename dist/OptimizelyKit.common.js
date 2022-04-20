@@ -404,6 +404,8 @@ var initialization = {
                 );
 
             } else {
+                common.userIdField = settings.userIdField;
+                common.userAttributes = userAttributes;
                 loadFullStackEvents();
             }            
         } else {

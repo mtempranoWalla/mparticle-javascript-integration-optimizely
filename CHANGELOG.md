@@ -2,6 +2,9 @@
 
 --
 
+#### 2.1.5 - 2022-04-20
+* fix - update datafile loading callback
+
 #### 2.1.4 - 2022-03-31
 * fix - update datafile loading callback
 
