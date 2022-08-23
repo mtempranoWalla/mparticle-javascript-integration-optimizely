@@ -1,6 +1,6 @@
 {
     "name": "@mtempranowalla/web-optimizely-kit",
-    "version": "2.1.9",
+    "version": "2.1.10",
     "author": "mParticle Developers <developers@mparticle.com> (https://www.mparticle.com)",
     "description": "mParticle integration sdk for Optimizely",
     "main": "dist/OptimizelyKit.common.js",
